@@ -3,7 +3,10 @@ import { Button, Modal, TextareaControl } from "@wordpress/components";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { store as blockEditorStore } from "@wordpress/block-editor";
 import { rawHandler } from "@wordpress/blocks";
-import { PluginDocumentSettingPanel, store as editorStore } from "@wordpress/editor";
+import {
+  PluginDocumentSettingPanel,
+  store as editorStore,
+} from "@wordpress/editor";
 import { marked } from "marked";
 import { registerPlugin } from "@wordpress/plugins";
 import { __ } from "@wordpress/i18n";
@@ -18,8 +21,11 @@ function isAbilityClientFallbackError(error) {
     return false;
   }
   const message =
-    "message" in error && typeof error.message === "string" ? error.message : "";
-  const code = "code" in error && typeof error.code === "string" ? error.code : "";
+    "message" in error && typeof error.message === "string"
+      ? error.message
+      : "";
+  const code =
+    "code" in error && typeof error.code === "string" ? error.code : "";
   return (
     code === "ability_not_found" ||
     message.includes("Ability not found") ||
@@ -62,14 +68,18 @@ function markdownToBlocks(markdown) {
 }
 
 function ensureProviderAvailable(createErrorNotice) {
-  const { hasProvider = false, connectorsUrl = "" } = window.aiProviderData ?? {};
+  const { hasProvider = false, connectorsUrl = "" } =
+    window.blocksmithPromptsProviderData ?? {};
 
   if (hasProvider) {
     return true;
   }
 
   createErrorNotice(
-    __("This feature requires an AI Connector to function properly.", "blocksmith-prompts"),
+    __(
+      "This feature requires an AI Connector to function properly.",
+      "blocksmith-prompts",
+    ),
     {
       id: PROVIDER_NOTICE_ID,
       isDismissible: true,
@@ -87,12 +97,7 @@ function ensureProviderAvailable(createErrorNotice) {
   return false;
 }
 
-function GenerateContentModal({
-  isOpen,
-  onClose,
-  postContent,
-  onInsert,
-}) {
+function GenerateContentModal({ isOpen, onClose, postContent, onInsert }) {
   const { createErrorNotice, removeNotice } = useDispatch(noticesStore);
   const [prompt, setPrompt] = useState("");
   const [generated, setGenerated] = useState("");
@@ -183,12 +188,18 @@ function GenerateContentModal({
         )}
 
         {error && (
-          <p className="blocksmith-prompts-modal__error" style={{ color: "#cc1818" }}>
+          <p
+            className="blocksmith-prompts-modal__error"
+            style={{ color: "#cc1818" }}
+          >
             {error}
           </p>
         )}
 
-        <div className="blocksmith-prompts-modal__actions" style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+        <div
+          className="blocksmith-prompts-modal__actions"
+          style={{ display: "flex", gap: "8px", marginTop: "16px" }}
+        >
           {generated ? (
             <Button
               variant="primary"
@@ -205,9 +216,7 @@ function GenerateContentModal({
             disabled={loading || !prompt.trim()}
             isBusy={loading}
           >
-            {loading
-              ? __("Generating…", "blocksmith-prompts")
-              : generateLabel}
+            {loading ? __("Generating…", "blocksmith-prompts") : generateLabel}
           </Button>
 
           <Button variant="tertiary" onClick={handleClose}>

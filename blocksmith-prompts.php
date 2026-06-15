@@ -136,7 +136,7 @@ add_action(
 
 				wp_add_inline_script(
 					'blocksmith-prompts-editor',
-					'window.aiProviderData=Object.assign(window.aiProviderData||{},'
+					'window.blocksmithPromptsProviderData=Object.assign(window.blocksmithPromptsProviderData||{},'
 					. wp_json_encode( $provider_data )
 					. ');',
 					'before',
