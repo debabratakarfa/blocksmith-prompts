@@ -22,9 +22,9 @@ declare(strict_types=1);
 
 defined( 'ABSPATH' ) || exit();
 
-define( 'BSP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'BSP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BSP_VERSION', '1.0.0' );
+define( 'BLOCKSMITH_PROMPTS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'BLOCKSMITH_PROMPTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'BLOCKSMITH_PROMPTS_VERSION', '1.0.0' );
 
 // Check the AI system exists before proceeding.
 add_action(
@@ -59,7 +59,7 @@ add_action(
 			return;
 		}
 
-		require_once BSP_PLUGIN_DIR . 'includes/class-ability.php';
+		require_once BLOCKSMITH_PROMPTS_PLUGIN_DIR . 'includes/class-ability.php';
 
 		// Register the ability when the Abilities API boots.
 		add_action(
@@ -97,7 +97,7 @@ add_action(
 					return;
 				}
 
-				$asset_file = BSP_PLUGIN_DIR . 'build/index.asset.php';
+				$asset_file = BLOCKSMITH_PROMPTS_PLUGIN_DIR . 'build/index.asset.php';
 				if ( ! file_exists( $asset_file ) ) {
 					return;
 				}
@@ -116,7 +116,7 @@ add_action(
 
 				wp_enqueue_script(
 					'blocksmith-prompts-editor',
-					BSP_PLUGIN_URL . 'build/index.js',
+					BLOCKSMITH_PROMPTS_PLUGIN_URL . 'build/index.js',
 					$dependencies,
 					$asset['version'],
 					array(
