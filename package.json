@@ -1,5 +1,16 @@
 {
   "name": "blocksmith-prompts",
+  "files": [
+    "blocksmith-prompts.php",
+    "includes",
+    "src",
+    "build",
+    "readme.txt",
+    "README.md",
+    "LICENSE",
+    "composer.json",
+    "package.json"
+  ],
   "scripts": {
     "build": "wp-scripts build",
     "check-engines": "wp-scripts check-engines",

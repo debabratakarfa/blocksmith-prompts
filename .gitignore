@@ -4,6 +4,7 @@ node_modules/
 # Build tooling cache
 .cache/
 .webpack-cache/
+.kimchi/
 
 # Logs
 *.log
